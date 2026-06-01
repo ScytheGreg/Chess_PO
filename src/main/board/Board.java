@@ -1,8 +1,11 @@
 package board;
 
+import board.exception.vectorOutOfBoundException;
+
 public class Board {
     private final int MAX_X = 8;
     private final int MAX_Y = 8;
+    private int timeId = 0;
 
     private final Square[][] board;
 
@@ -13,9 +16,7 @@ public class Board {
                 board[x][y] = new Square(x, y);
             }
         }
-
     }
-
 
     public int getMAX_X() {
         return MAX_X;
@@ -26,9 +27,19 @@ public class Board {
     }
 
 
-    public boolean contains(Square square) {
+    public boolean contains(Vector square) {
         return 0 <= square.getX() && square.getX() < MAX_X &&
                 0 <= square.getY() && square.getY() < MAX_Y;
+    }
+
+    public Square getSquare(Vector coordinates){
+        if (! contains(coordinates))
+            throw new vectorOutOfBoundException(coordinates);
+        return board[coordinates.getX()][coordinates.getY()];
+    }
+
+    public int getTimeId(){
+        return timeId;
     }
 
 }

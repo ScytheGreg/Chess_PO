@@ -1,0 +1,7 @@
+Strategie:
+	-> alpha, beta obcięcia
+	-> funkcje oceny (np. suma wartości figur) -> obcięcie głębokości
+
+
+Trochę inne:
+	-> Metoda losowania Monte Carlo
