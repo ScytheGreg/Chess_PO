@@ -12,7 +12,7 @@ public class Move {
     public Move(Chessman movedChessman, Square target, int timeToken){
         this.movedChessman = movedChessman;
         this.target = target;
-        this.timeToken = timeToken;
+        this.timeToken = timeToken; 
     }
 
     public Chessman getMovedChessman(){return movedChessman;};
