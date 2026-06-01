@@ -1,6 +1,11 @@
 package board;
 
+import chessman.Chessman;
+import move.Move;
 import board.exception.vectorOutOfBoundException;
+import player.Player;
+
+import java.util.LinkedList;
 
 public class Board {
     private final int MAX_X = 8;
@@ -9,10 +14,10 @@ public class Board {
 
     private final Square[][] board;
 
-    public Board(){
+    public Board() {
         board = new Square[MAX_X][MAX_Y];
-        for(int x = 0 ; x < MAX_X ; ++x){
-            for(int y = 0 ; y < MAX_Y ; ++y){
+        for (int x = 0; x < MAX_X; ++x) {
+            for (int y = 0; y < MAX_Y; ++y) {
                 board[x][y] = new Square(x, y);
             }
         }
@@ -32,14 +37,25 @@ public class Board {
                 0 <= square.getY() && square.getY() < MAX_Y;
     }
 
-    public Square getSquare(Vector coordinates){
-        if (! contains(coordinates))
+    public Square getSquare(Vector coordinates) {
+        if (!contains(coordinates))
             throw new vectorOutOfBoundException(coordinates);
         return board[coordinates.getX()][coordinates.getY()];
     }
 
-    public int getTimeId(){
+    public int getTimeId() {
         return timeId;
     }
 
+    public LinkedList<Move> legalMoves(Player player) {
+        LinkedList<Move> result = new LinkedList<>();
+        for (int i = 0; i < getMAX_X(); ++i) {
+            for (Square square : board[i]) {
+                if (square.getOwner().equals(player)) {
+                    result.addAll(square.getChessman().legalMoves(this));
+                }
+            }
+        }
+        return result;
+    }
 }

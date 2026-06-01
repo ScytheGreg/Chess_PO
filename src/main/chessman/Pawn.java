@@ -1,6 +1,6 @@
 package chessman;
 
-import Move.Move;
+import move.Move;
 import board.Board;
 import board.Square;
 import board.Vector;

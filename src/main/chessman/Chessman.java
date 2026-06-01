@@ -1,7 +1,7 @@
 package chessman;
 
 import board.*;
-import Move.Move;
+import move.Move;
 import board.exception.vectorOutOfBoundException;
 import player.Player;
 import java.util.LinkedList;

@@ -1,5 +1,7 @@
 package player;
 
-public class Player {
+import board.Board;
 
+public abstract class Player {
+    abstract void play(Board board);
 }
