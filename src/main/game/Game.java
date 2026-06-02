@@ -1,6 +1,7 @@
 package game;
 
 import board.Board;
+import player.NoPossibleMoveException;
 import player.Player;
 
 import java.util.LinkedList;
@@ -32,9 +33,14 @@ public class Game {
     public void play(){
         int k = 0, n = players.length;
         while (!doesEnd()){
-            players[k].play(board);
-            ++k;
-            k %= n;
+            try {
+                players[k].play(board);
+                ++k;
+                k %= n;
+            }catch (NoPossibleMoveException e){
+                System.out.println(e.getMessage());
+                break;
+            }
         }
         System.out.println(this);
     }
@@ -60,7 +66,7 @@ public class Game {
             }
         }
 
-        return "Chess game: (w)" + players[0] + " vs (b)" + players[1]
+        return "Chess game: (w) " + players[0] + " vs (b) " + players[1]
                 + "\nTable " + table + " Round " + round + endRemark;
     }
 }

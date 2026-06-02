@@ -2,16 +2,27 @@ package player;
 
 import board.Board;
 import chessman.Chessman;
+import move.Move;
+
+import java.util.LinkedList;
 
 public abstract class Player implements Comparable<Player> {
     private Integer figurePoints = 0;
-    private String name;
+    private final String name;
 
     public Player(String name){
         this.name = name;
     }
 
-    abstract public  void play(Board board);
+    public abstract Move chooseMove(LinkedList<Move> possibleMoves);
+
+    public void play(Board board) throws NoPossibleMoveException{
+        LinkedList<Move> possibleMoves = board.legalMoves(this);
+        if (possibleMoves.isEmpty()){
+            throw new NoPossibleMoveException(this, board.getTimeId());
+        }
+        chooseMove(possibleMoves).apply(board);
+    }
 
     public void gainFigure(Chessman figure){
         figurePoints += figure.getValue();
@@ -35,6 +46,6 @@ public abstract class Player implements Comparable<Player> {
 
     @Override
     public String toString(){
-        return name + ", figure points: " + figurePoints;
+        return name + ", (figure points: " + figurePoints + ")";
     }
 }

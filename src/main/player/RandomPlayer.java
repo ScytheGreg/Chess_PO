@@ -1,6 +1,5 @@
 package player;
 
-import board.Board;
 import move.Move;
 
 import java.util.LinkedList;
@@ -15,18 +14,10 @@ public class RandomPlayer extends Player{
     }
 
     @Override
-    public void play(Board board){
-        LinkedList<Move> possibleMoves = board.legalMoves(this);
-
+    public Move chooseMove(LinkedList<Move> possibleMoves){
         Random gen = new Random(seed);
-        try {
-            int n = possibleMoves.size();
-            int k = Math.abs(gen.nextInt()) % n;
-            Move playThis = possibleMoves.get(k);
-            playThis.apply(board);
-        }
-        catch(ArithmeticException e){
-            throw NoPossibleMoveException(this, board.getTimeId());
-        }
+        int n = possibleMoves.size();
+        int k = Math.abs(gen.nextInt()) % n;
+        return possibleMoves.get(k);
     }
 }

@@ -79,4 +79,9 @@ public class Board {
     public void moveRestored(){
         --timeId;
     }
+
+    @Override
+    public String toString(){
+        
+    }
 }
