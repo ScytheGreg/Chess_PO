@@ -25,6 +25,7 @@ public abstract class Chessman {
         this.directions = directions;
         this.name = name;
         this.shortName = shortName;
+        owner.gainFigure(this);
     }
 
     public int getValue(){return value;}
@@ -56,7 +57,9 @@ public abstract class Chessman {
         }
         return result;
     }
+
     public void beTaken(){
+        owner.looseFigure(this);
         position = null;
     }
     public void attack(Square target){

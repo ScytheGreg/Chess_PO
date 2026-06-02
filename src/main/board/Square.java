@@ -44,7 +44,7 @@ public class Square extends Vector{
         return chessman == null;
     }
     public Player getOwner(){
-        return chessman.getOwner();
+        return chessman == null ? null : chessman.getOwner();
     }
 
     private Square[]  neighbours(Vector[] directions, Board board){

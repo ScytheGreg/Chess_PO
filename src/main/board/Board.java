@@ -64,7 +64,7 @@ public class Board {
         LinkedList<Move> result = new LinkedList<>();
         for (int i = 0; i < getMAX_X(); ++i) {
             for (Square square : board[i]) {
-                if (square.getOwner().equals(player)) {
+                if (square.getOwner()!= null && square.getOwner().equals(player)) {
                     result.addAll(square.getChessman().legalMoves(this));
                 }
             }

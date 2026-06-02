@@ -46,6 +46,7 @@ public class ChessmanSet implements Iterable<Chessman> {
     }
 
     private Chessman[] figuresRow(Player owner, int y) {
+        y -= 1;
         Square RookA = new Square('A', y);
         Square KnightB = new Square('B', y);
         Square BishopC = new Square('C', y);
@@ -67,9 +68,10 @@ public class ChessmanSet implements Iterable<Chessman> {
         };
     }
     private Chessman[] pawnsRow(Player owner,  int y) {
+        y -= 1;
         Chessman[] pawns = new Chessman[8];
         for (int x = 0; x < 8; ++x) {
-            Square position = new Square(x + 1, y);
+            Square position = new Square(x, y);
             pawns[x] = new Pawn(owner, position);
         }
         return pawns;

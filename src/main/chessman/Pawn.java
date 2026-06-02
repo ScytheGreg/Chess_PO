@@ -39,7 +39,8 @@ public class Pawn extends Chessman{
             target.add(dir);
             if (board.contains(target)){
                 target = board.getSquare(target);
-                if (!target.getOwner().equals(getOwner())){
+                Player targetOwner = target.getOwner();
+                if (targetOwner != null && ! targetOwner.equals(getOwner())){
                     result.addLast(new Move(this, target, timeId));
                 }
             }
