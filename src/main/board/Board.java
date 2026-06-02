@@ -43,6 +43,10 @@ public class Board {
         return board[coordinates.getX()][coordinates.getY()];
     }
 
+    public Square getSquare(int x, int y){
+        return getSquare(new Vector(x, y));
+    }
+
     public int getTimeId() {
         return timeId;
     }

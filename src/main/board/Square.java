@@ -1,5 +1,6 @@
 package board;
 
+import board.exception.IllegalSquareLetterException;
 import chessman.Chessman;
 import player.Player;
 
@@ -7,9 +8,19 @@ import java.util.ArrayList;
 
 public class Square extends Vector{
 
-
     private Chessman chessman = null;
     public Square(int x, int y){
+        super(x, y);
+    }
+    public Square(char x, int y){
+        if ('a' <= x && x <= 'h'){
+            x -= 'a';
+        } else if ('A' <= x && x <= 'H'){
+            x -= 'A';
+        }
+        else {
+            throw new IllegalSquareLetterException(x);
+        }
         super(x, y);
     }
     public Square(Vector coordinates){
