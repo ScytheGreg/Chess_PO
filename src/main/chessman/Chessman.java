@@ -11,16 +11,20 @@ public abstract class Chessman {
     private final Player owner;
     private final int singularMoveLimit;
     private final Vector[] directions;
+    private final String name;
+    private final String shortName;
 
     private Square position;
 
 
-    public Chessman( Player owner, Square position, int value, int singularMoveLimit, Vector[] directions){
+    public Chessman( Player owner, Square position, int value, int singularMoveLimit, Vector[] directions, String name, String shortName){
         this.owner = owner;
         this.position = position;
         this.value = value;
         this.singularMoveLimit = singularMoveLimit;
         this.directions = directions;
+        this.name = name;
+        this.shortName = shortName;
     }
 
     public int getValue(){return value;}
@@ -60,6 +64,9 @@ public abstract class Chessman {
         target.attack(this);
         this.position = target;
     }
-
+    @Override
+    public String toString(){
+        return shortName + position.toString();
+    }
 
 }

@@ -15,7 +15,7 @@ public class Move {
         this.timeToken = timeToken;
     }
 
-    public Chessman getMovedChessman(){return movedChessman;};
+    public Chessman getMovedChessman(){return movedChessman;}
     public Square getTarget(){return target;}
 
     public void apply(Board board){
@@ -23,6 +23,14 @@ public class Move {
             throw new outdatedMoveException(timeToken, board.getTimeId());
         }
         movedChessman.attack(target);
+    }
+
+    @Override public String toString(){
+        String capture = "";
+        if (! target.isFree()){
+            capture += "x";
+        }
+        return movedChessman + capture + target;
     }
 
 }
