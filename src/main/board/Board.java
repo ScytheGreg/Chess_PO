@@ -1,6 +1,7 @@
 package board;
 
 import chessman.Chessman;
+import game.ChessmanSet;
 import move.Move;
 import board.exception.vectorOutOfBoundException;
 import player.Player;
@@ -14,11 +15,19 @@ public class Board {
 
     private final Square[][] board;
 
-    public Board() {
+    public Board(ChessmanSet startPosition) {
         board = new Square[MAX_X][MAX_Y];
         for (int x = 0; x < MAX_X; ++x) {
             for (int y = 0; y < MAX_Y; ++y) {
                 board[x][y] = new Square(x, y);
+            }
+        }
+        for(Chessman figure : startPosition){
+            if (figure != null){
+                Square boardSquare = getSquare(figure.getPosition());
+                assert(boardSquare.isFree());
+                figure.attack(boardSquare); // Move figure from virtual
+                                            // to real board
             }
         }
     }
@@ -61,5 +70,13 @@ public class Board {
             }
         }
         return result;
+    }
+
+    public void movePerformed(){
+        ++timeId;
+    }
+
+    public void moveRestored(){
+        --timeId;
     }
 }
