@@ -13,7 +13,8 @@ public class Game {
     private final Player[] players;
 
     public Game(Player white, Player black){
-        board = new Board(new ChessmanSet(white, black));
+        board = Board.instance();
+        board.prepareGame(new ChessmanSet(white, black));
         players = new Player[] {white, black};
     }
 

@@ -15,20 +15,30 @@ public class Board {
     private int timeId = 0;
 
     private final Square[][] board;
+    private static Board uniqeBoard;
 
-    public Board(ChessmanSet startPosition) {
+    public static Board instance(){
+        if (uniqeBoard == null){
+            uniqeBoard = new Board();
+        }
+        return uniqeBoard;
+    }
+
+    private Board() {
         board = new Square[MAX_X][MAX_Y];
         for (int x = 0; x < MAX_X; ++x) {
             for (int y = 0; y < MAX_Y; ++y) {
                 board[x][y] = new Square(x, y);
             }
         }
+    }
+
+    public void prepareGame(ChessmanSet startPosition){
         for(Chessman figure : startPosition){
             if (figure != null){
                 Square boardSquare = getSquare(figure.getPosition());
                 assert(boardSquare.isFree());
-                figure.attack(boardSquare); // Move figure from virtual
-                                            // to real board
+                figure.attack(boardSquare); // Move figure to its start position
             }
         }
     }
@@ -42,9 +52,9 @@ public class Board {
     }
 
 
-    public boolean contains(Vector square) {
-        return 0 <= square.getX() && square.getX() < MAX_X &&
-                0 <= square.getY() && square.getY() < MAX_Y;
+    public boolean contains(Vector coordinates) {
+        return 0 <= coordinates.getX() && coordinates.getX() < MAX_X &&
+                0 <= coordinates.getY() && coordinates.getY() < MAX_Y;
     }
 
     public Square getSquare(Vector coordinates) {
