@@ -13,13 +13,14 @@ public abstract class Chessman {
     private final Vector[] directions;
     private final String name;
     private final String shortName;
+    private final Vector startPosition;
 
-    private Square position;
+    private Square position = null;
 
 
-    public Chessman( Player owner, Square position, int value, int singularMoveLimit, Vector[] directions, String name, String shortName){
+    public Chessman(Player owner, Vector startPosition, int value, int singularMoveLimit, Vector[] directions, String name, String shortName){
         this.owner = owner;
-        this.position = position;
+        this.startPosition = startPosition;
         this.value = value;
         this.singularMoveLimit = singularMoveLimit;
         this.directions = directions;
@@ -31,16 +32,17 @@ public abstract class Chessman {
     public int getValue(){return value;}
     public Player getOwner(){return owner;}
     public Square getPosition(){return position;}
+    public Vector getStartPosition(){return startPosition;}
 
     public LinkedList<Move> legalMoves(Board board){
         LinkedList<Move> result = new LinkedList<>();
         int timeId = board.getTimeId();
         for (Vector dir : directions){
-            Square target = new Square(position);
-            target.add(dir);
+            Vector targetCoords = new Vector(position);
+            targetCoords.add(dir);
             for (int i = 0 ; i < singularMoveLimit ; ++i){
                 try {
-                    target = board.getSquare(target); // Change target to actual target square
+                    Square target = board.getSquare(targetCoords); // Change target to actual target square
                     if (target.isFree()){
                         result.addLast(new Move(this, target, timeId));
                     }

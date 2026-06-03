@@ -14,7 +14,7 @@ public class Pawn extends Chessman{
             new Vector(1, 1),
             new Vector(-1, 1)
     };
-    public Pawn(Player owner, Square position){
+    public Pawn(Player owner, Vector position){
         super(owner, position, 1, 1, null, "Pawn", "");
     }
 
@@ -24,21 +24,23 @@ public class Pawn extends Chessman{
         int timeId = board.getTimeId();
 
         // Forward move
-        Square target = new Square(getPosition());
-        target.add(forward);
-        if (board.contains(target)){
-            target = board.getSquare(target);
-            if (target.isFree()){
-                result.addLast(new Move(this, target, timeId));
+        {
+            Vector targetCoords = new Vector(getPosition());
+            targetCoords.add(forward);
+            if (board.contains(targetCoords)) {
+                Square target = board.getSquare(targetCoords);
+                if (target.isFree()) {
+                    result.addLast(new Move(this, target, timeId));
+                }
             }
         }
 
         // Diagonal attack
         for(Vector dir : attack) {
-            target = new Square(getPosition());
-            target.add(dir);
-            if (board.contains(target)){
-                target = board.getSquare(target);
+            Vector targetCoords = new Vector(getPosition());
+            targetCoords.add(dir);
+            if (board.contains(targetCoords)){
+                Square target = board.getSquare(targetCoords);
                 Player targetOwner = target.getOwner();
                 if (targetOwner != null && ! targetOwner.equals(getOwner())){
                     result.addLast(new Move(this, target, timeId));

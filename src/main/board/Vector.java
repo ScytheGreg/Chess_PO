@@ -1,5 +1,7 @@
 package board;
 
+import board.exception.IllegalVectorLetterException;
+
 public class Vector {
     private int x, y;
     public Vector(int x, int y){
@@ -8,6 +10,19 @@ public class Vector {
     public Vector(Vector vector){
         this.x = vector.getX();
         this.y = vector.getY();
+    }
+
+    public Vector(char x, int y){
+        if ('a' <= x && x <= 'z'){
+            x -= 'a';
+        } else if ('A' <= x && x <= 'Z'){
+            x -= 'A';
+        }
+        else {
+            throw new IllegalVectorLetterException(x);
+        }
+        this.x = x;
+        this.y = y;
     }
     public int getY(){
         return y;

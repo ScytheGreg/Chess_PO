@@ -1,6 +1,6 @@
 package game;
 
-import board.Square;
+import board.Vector;
 import chessman.*;
 import player.Player;
 
@@ -47,14 +47,14 @@ public class ChessmanSet implements Iterable<Chessman> {
 
     private Chessman[] figuresRow(Player owner, int y) {
         y -= 1;
-        Square RookA = new Square('A', y);
-        Square KnightB = new Square('B', y);
-        Square BishopC = new Square('C', y);
-        Square QueenD = new Square('D', y);
-        Square KingE = new Square('E', y);
-        Square BishopF = new Square('F', y);
-        Square KnightG = new Square('G', y);
-        Square RookH = new Square('H', y);
+        Vector RookA = new Vector('A', y);
+        Vector KnightB = new Vector('B', y);
+        Vector BishopC = new Vector('C', y);
+        Vector QueenD = new Vector('D', y);
+        Vector KingE = new Vector('E', y);
+        Vector BishopF = new Vector('F', y);
+        Vector KnightG = new Vector('G', y);
+        Vector RookH = new Vector('H', y);
 
         return new Chessman[] {
                 new Rook(owner, RookA),
@@ -71,7 +71,7 @@ public class ChessmanSet implements Iterable<Chessman> {
         y -= 1;
         Chessman[] pawns = new Chessman[8];
         for (int x = 0; x < 8; ++x) {
-            Square position = new Square(x, y);
+            Vector position = new Vector(x, y);
             pawns[x] = new Pawn(owner, position);
         }
         return pawns;
