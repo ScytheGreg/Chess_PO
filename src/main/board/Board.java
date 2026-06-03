@@ -36,21 +36,12 @@ public class Board {
     public void prepareGame(ChessmanSet startPosition){
         for(Chessman figure : startPosition){
             if (figure != null){
-                Square boardSquare = getSquare(figure.getPosition());
+                Square boardSquare = getSquare(figure.getStartPosition());
                 assert(boardSquare.isFree());
                 figure.attack(boardSquare); // Move figure to its start position
             }
         }
     }
-
-    public int getMAX_X() {
-        return MAX_X;
-    }
-
-    public int getMAX_Y() {
-        return MAX_Y;
-    }
-
 
     public boolean contains(Vector coordinates) {
         return 0 <= coordinates.getX() && coordinates.getX() < MAX_X &&
@@ -73,7 +64,7 @@ public class Board {
 
     public Iterator<Move> legalMoves(Player player) {
         LinkedList<Move> result = new LinkedList<>();
-        for (int i = 0; i < getMAX_X(); ++i) {
+        for (int i = 0; i < MAX_X; ++i) {
             for (Square square : board[i]) {
                 if (square.getOwner()!= null && square.getOwner().equals(player)) {
                     result.addAll(square.getChessman().legalMoves(this));

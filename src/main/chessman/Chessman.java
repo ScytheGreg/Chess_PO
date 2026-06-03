@@ -65,9 +65,11 @@ public abstract class Chessman {
         position = null;
     }
     public void attack(Square target){
-        position.leave();
+        if (position != null) {
+            position.leave();
+        }
         target.attack(this);
-        this.position = target;
+        position = target;
     }
     @Override
     public String toString(){
