@@ -11,15 +11,17 @@ import java.util.Arrays;
 public class Game {
     private final Board board;
     private final Player[] players;
+    private final int moveLimit;
 
-    public Game(Player white, Player black){
+    public Game(Player white, Player black, int moveLimit){
         board = Board.instance();
         board.prepareGame(new ChessmanSet(white, black));
         players = new Player[] {white, black};
+        this.moveLimit  = moveLimit;
     }
 
     public boolean doesEnd(){
-        if (board.getTimeId() >=  50)
+        if (board.getTimeId() >=  moveLimit)
             return true;
         for (Player player : players){
             if (player.getFigurePoints() < 1000){ // King is dead

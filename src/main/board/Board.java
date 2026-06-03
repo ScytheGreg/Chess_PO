@@ -82,4 +82,21 @@ public class Board {
         --timeId;
     }
 
+    @Override
+    public String toString(){
+        String result = "";
+        for (int y = 0 ; y < MAX_Y ; ++y) {
+            for (Square square : board[y]) {
+                if (square.isFree()){
+                    result += ".";
+                }
+                else{
+                    result += square.getChessman().getShortName();
+                }
+            }
+            result += "\n";
+        }
+        return result;
+    }
+
 }

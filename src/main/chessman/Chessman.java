@@ -33,6 +33,7 @@ public abstract class Chessman {
     public Player getOwner(){return owner;}
     public Square getPosition(){return position;}
     public Vector getStartPosition(){return startPosition;}
+    public String getShortName() {return shortName;}
 
     public LinkedList<Move> legalMoves(Board board){
         LinkedList<Move> result = new LinkedList<>();
