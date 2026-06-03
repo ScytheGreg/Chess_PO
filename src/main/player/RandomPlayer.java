@@ -9,8 +9,8 @@ public class RandomPlayer extends Player {
     Random gen;
     private double willingness;
 
-    public RandomPlayer(String name, int seed, double willingness) {
-        super(name);
+    public RandomPlayer(String name, boolean upperCase, int seed, double willingness) {
+        super(name, upperCase);
         this.gen = new Random(seed);
         if (willingness < 0 || willingness > 1){
             throw new IllegalArgumentException("Willingness must be in range [0, 1]");

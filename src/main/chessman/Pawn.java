@@ -15,7 +15,7 @@ public class Pawn extends Chessman{
             new Vector(-1, 1)
     };
     public Pawn(Player owner, Vector position){
-        super(owner, position, 1, 1, null, "Pawn", "p");
+        super(owner, position, 1, 1, null, "P");
     }
 
     @Override

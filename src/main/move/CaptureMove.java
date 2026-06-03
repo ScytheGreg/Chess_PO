@@ -12,7 +12,7 @@ public class CaptureMove extends Move{
 
     @Override
     public String toString(){
-        return getMovedChessman().getShortName() + getStation() + "x" + getTarget();
+        return "("+ getMovedChessman().getShortName() + ") " + getStation() + "x" + getTarget();
     }
 
     public Chessman getTakenChessman(){

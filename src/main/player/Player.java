@@ -11,9 +11,11 @@ public abstract class Player implements Comparable<Player> {
     private Integer figurePoints = 0;
     private final ArrayList<MoveObserver> observers = new ArrayList<>();
     private final String name;
+    private final boolean upperCase;
 
-    public Player(String name){
+    public Player(String name, boolean upperCase){
         this.name = name;
+        this.upperCase = upperCase;
     }
 
     public abstract Move chooseMove(Iterator<Move> possibleMoves);
@@ -40,6 +42,10 @@ public abstract class Player implements Comparable<Player> {
 
     public int getFigurePoints(){
         return figurePoints;
+    }
+
+    public boolean getUpperCase(){
+        return  upperCase;
     }
 
     public int compareTo(Player other){

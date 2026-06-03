@@ -43,7 +43,7 @@ public class Move {
     }
 
     @Override public String toString(){
-        return movedChessman.getShortName() + station + " " + target;
+        return "(" +  movedChessman.getShortName() + ") " + station + " " + target;
     }
 
     public int getTimeToken(){

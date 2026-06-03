@@ -12,21 +12,23 @@ public abstract class Chessman {
     private final Player owner;
     private final int singularMoveLimit;
     private final Vector[] directions;
-    private final String name;
     private final String shortName;
     private final Vector startPosition;
 
     private Square position = null;
 
 
-    public Chessman(Player owner, Vector startPosition, int value, int singularMoveLimit, Vector[] directions, String name, String shortName){
+    public Chessman(Player owner, Vector startPosition, int value, int singularMoveLimit, Vector[] directions, String shortName){
         this.owner = owner;
         this.startPosition = startPosition;
         this.value = value;
         this.singularMoveLimit = singularMoveLimit;
         this.directions = directions;
-        this.name = name;
-        this.shortName = shortName;
+        if (owner.getUpperCase()){
+            this.shortName = shortName.toUpperCase();
+        }else {
+            this.shortName = shortName.toLowerCase();
+        }
         owner.gainFigure(this);
     }
 
