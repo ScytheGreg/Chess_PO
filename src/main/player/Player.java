@@ -37,7 +37,7 @@ public abstract class Player implements Comparable<Player> {
     }
 
     public int compareTo(Player other){
-        return figurePoints.compareTo(other.getFigurePoints());
+        return -1 * figurePoints.compareTo(other.getFigurePoints());
     }
 
     public String getName(){
