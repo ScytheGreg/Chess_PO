@@ -6,6 +6,7 @@ import move.Move;
 import board.exception.vectorOutOfBoundException;
 import player.Player;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Board {
@@ -60,7 +61,7 @@ public class Board {
         return timeId;
     }
 
-    public LinkedList<Move> legalMoves(Player player) {
+    public Iterator<Move> legalMoves(Player player) {
         LinkedList<Move> result = new LinkedList<>();
         for (int i = 0; i < getMAX_X(); ++i) {
             for (Square square : board[i]) {
@@ -69,7 +70,7 @@ public class Board {
                 }
             }
         }
-        return result;
+        return result.iterator();
     }
 
     public void movePerformed(){

@@ -4,6 +4,7 @@ import board.Board;
 import chessman.Chessman;
 import move.Move;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public abstract class Player implements Comparable<Player> {
@@ -14,11 +15,11 @@ public abstract class Player implements Comparable<Player> {
         this.name = name;
     }
 
-    public abstract Move chooseMove(LinkedList<Move> possibleMoves);
+    public abstract Move chooseMove(Iterator<Move> possibleMoves);
 
     public void play(Board board) throws NoPossibleMoveException{
-        LinkedList<Move> possibleMoves = board.legalMoves(this);
-        if (possibleMoves.isEmpty()){
+        Iterator<Move> possibleMoves = board.legalMoves(this);
+        if (!possibleMoves.hasNext()){
             throw new NoPossibleMoveException(this, board.getTimeId());
         }
         chooseMove(possibleMoves).apply(board);
