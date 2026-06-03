@@ -5,7 +5,6 @@ import chessman.Chessman;
 import move.Move;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
 public abstract class Player implements Comparable<Player> {
     private Integer figurePoints = 0;
@@ -47,6 +46,10 @@ public abstract class Player implements Comparable<Player> {
 
     @Override
     public String toString(){
+        return name;
+    }
+
+    public String stats(){
         return name + ", (figure points: " + figurePoints + ")";
     }
 }

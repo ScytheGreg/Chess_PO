@@ -81,8 +81,5 @@ public class Board {
         --timeId;
     }
 
-    @Override
-    public String toString(){
-        
-    }
+
 }

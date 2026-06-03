@@ -11,8 +11,6 @@ import java.util.Arrays;
 public class Game {
     private final Board board;
     private final Player[] players;
-    private final int table = 22;
-    private final int round = 67;
 
     public Game(Player white, Player black){
         board = new Board(new ChessmanSet(white, black));
@@ -61,12 +59,12 @@ public class Game {
             endRemark += "\nRanking:\n";
             int place = 1;
             for (Player player : winnerList()){
-                endRemark += ("\t" + place + ". " + player + "\n");
+                endRemark += ("\t" + place + ". " + player.stats() + "\n");
                 ++place;
             }
         }
 
-        return "Chess game: (w) " + players[0] + " vs (b) " + players[1]
-                + "\nTable " + table + " Round " + round + endRemark;
+        return "Chess game: (w) " + players[0] + " vs (b) "
+                + players[1] + endRemark;
     }
 }
