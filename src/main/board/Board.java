@@ -85,8 +85,9 @@ public class Board {
     @Override
     public String toString(){
         String result = "";
-        for (int y = 0 ; y < MAX_Y ; ++y) {
-            for (Square square : board[y]) {
+        for (int y = MAX_Y - 1 ; y  >= 0 ; --y) {
+            for (int x = 0 ; x < MAX_X ; ++x) {
+                Square square = board[x][y];
                 if (square.isFree()){
                     result += ".";
                 }

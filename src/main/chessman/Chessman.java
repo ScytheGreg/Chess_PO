@@ -1,6 +1,7 @@
 package chessman;
 
 import board.*;
+import move.CaptureMove;
 import move.Move;
 import board.exception.vectorOutOfBoundException;
 import player.Player;
@@ -45,10 +46,10 @@ public abstract class Chessman {
                 try {
                     Square target = board.getSquare(targetCoords); // Change target to actual target square
                     if (target.isFree()){
-                        result.addLast(new Move(this, target, timeId));
+                        result.addLast(new Move(this, target, timeId)); // Target is free
                     }
                     else if (! target.getOwner().equals(owner)){ // Case there's opponents figure at target
-                        result.addLast(new Move(this, target, timeId));
+                        result.addLast(new CaptureMove(this, target, timeId, target.getChessman()));
                     }
                     else {
                         break; // Case this player figure blocks move

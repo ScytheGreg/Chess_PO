@@ -43,15 +43,13 @@ public class Move {
     }
 
     @Override public String toString(){
-        String capture = "";
-        if (! target.isFree()){
-            capture += "x";
-        }
-        return movedChessman + capture + target;
+        return movedChessman.toString() + station + " " + target;
     }
 
     public int getTimeToken(){
         return timeToken;
     }
+
+    public Square getStation(){return station;}
 
 }
