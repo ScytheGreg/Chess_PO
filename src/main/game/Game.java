@@ -12,6 +12,7 @@ public class Game {
     private final Board board;
     private final Player[] players;
     private final int moveLimit;
+    private boolean stalemate = false;
 
     public Game(Player white, Player black, int moveLimit){
         board = Board.instance();
@@ -28,7 +29,7 @@ public class Game {
                 return true;
             }
         }
-        return false;
+        return stalemate;
     }
 
     public void play(){
@@ -40,6 +41,7 @@ public class Game {
                 k %= n;
             }catch (NoPossibleMoveException e){
                 System.out.println(e.getMessage());
+                stalemate = true;
                 break;
             }
         }
@@ -58,6 +60,10 @@ public class Game {
     @Override
     public String toString(){
         String endRemark = "";
+        if (stalemate){
+            endRemark += "Game has end with stalemate. There's a tie";
+        }
+
         if (doesEnd()){
             endRemark += "\nRanking:\n";
             int place = 1;

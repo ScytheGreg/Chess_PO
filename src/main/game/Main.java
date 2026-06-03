@@ -8,8 +8,8 @@ import player.RandomPlayer;
 public class Main {
 
     public static void main(String[] args){
-        Player white = new RandomPlayer("John", 1, 0.1);
-        Player black = new RandomPlayer("Ben", 1, 0.2);
+        Player white = new RandomPlayer("John", 1, 0.01);
+        Player black = new RandomPlayer("Ben", 1, 0.02);
 
         white.attach(WriteMove.instance());
         black.attach(WriteMove.instance());
@@ -17,7 +17,7 @@ public class Main {
         white.attach(BoardPrinter.instance());
         black.attach(BoardPrinter.instance());
 
-        Game social = new Game(white, black, 50);
+        Game social = new Game(white, black, 1000);
         social.play();
     }
 }
