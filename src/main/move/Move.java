@@ -50,4 +50,8 @@ public class Move {
         return movedChessman + capture + target;
     }
 
+    public int getTimeToken(){
+        return timeToken;
+    }
+
 }
