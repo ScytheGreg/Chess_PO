@@ -19,14 +19,20 @@ public abstract class Player implements Comparable<Player> {
     }
 
     /// !!!!!!!!! ///
-    public abstract Move chooseMove(Iterator<Move> possibleMoves);
+    public abstract Move chooseMove(LinkedList<Move> possibleMoves);
+
+    private LinkedList<Move> iteratorToList(Iterator<Move>iterator){
+        LinkedList<Move> result = new LinkedList<>();
+        iterator.forEachRemaining(result::add);
+        return result;
+    }
 
     public void play(Board board) throws NoPossibleMoveException{
         Iterator<Move> possibleMoves = board.legalMoves(this);
         if (!possibleMoves.hasNext()){
             throw new NoPossibleMoveException(this, board.getTimeId());
         }
-        Move playedMove = chooseMove(possibleMoves);
+        Move playedMove = chooseMove(iteratorToList(possibleMoves));
         playedMove.apply(board);
         for (MoveObserver observer : observers){
             observer.update(playedMove);
