@@ -31,12 +31,12 @@ public class ChessmanSet implements Iterable<Chessman> {
         Chessman[] empty = new Chessman[8];
         this.chessmen = new Chessman[][] {
                 figuresRow(white, 1),
-                pawnsRow(white, 2),
+                pawnsRow(white, 2, new Vector(0, 1)), // Pawns moving forward
                 empty,      //3
                 empty,      //4
                 empty,      //5
                 empty,      //6
-                pawnsRow(black, 7),
+                pawnsRow(black, 7, new Vector(0, -1)), // Pawns moving backward
                 figuresRow(black, 8)
         };
     }
@@ -67,12 +67,12 @@ public class ChessmanSet implements Iterable<Chessman> {
                 new Rook(owner, RookH)
         };
     }
-    private Chessman[] pawnsRow(Player owner,  int y) {
+    private Chessman[] pawnsRow(Player owner,  int y, Vector forward) {
         y -= 1;
         Chessman[] pawns = new Chessman[8];
         for (int x = 0; x < 8; ++x) {
             Vector position = new Vector(x, y);
-            pawns[x] = new Pawn(owner, position);
+            pawns[x] = new Pawn(owner, position, forward);
         }
         return pawns;
     }

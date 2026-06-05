@@ -9,13 +9,17 @@ import player.Player;
 import java.util.LinkedList;
 
 public class Pawn extends Chessman{
-    private final Vector forward = new Vector(0, 1);
+    private final Vector forward;
     private final Vector[] attack = {
-            new Vector(1, 1),
-            new Vector(-1, 1)
+            new Vector(1, 0),
+            new Vector(-1, 0)
     };
-    public Pawn(Player owner, Vector position){
+    public Pawn(Player owner, Vector position, Vector forward){
         super(owner, position, 1, 1, null, "P");
+        this.forward = forward;
+        for (Vector diagonal : attack){
+            diagonal.add(forward);
+        }
     }
 
     @Override
