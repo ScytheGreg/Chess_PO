@@ -8,6 +8,12 @@ public class CaptureMove extends Move{
     public CaptureMove(Chessman movedChessman, Square target, int timeToken){
         super(movedChessman, target, timeToken);
         this.takenChessman = target.getChessman();
+        if (target.isFree()){
+            throw new InvalidMoveException("Capture move cannot have clean target");
+            }
+        if (movedChessman.getOwner().equals(target.getOwner())){
+            throw new InvalidMoveException("Attacking own figures is prohibited");
+        }
     }
 
     public int takenMaterial(){
