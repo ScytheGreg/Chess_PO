@@ -4,7 +4,7 @@ import board.*;
 import board.exception.IncorrectMovesTimeIdException;
 import chessman.Chessman;
 
-public class Move {
+public abstract class Move {
     private final Chessman movedChessman;
     private final Square station;
     private final Square target;
@@ -17,6 +17,8 @@ public class Move {
         this.timeToken = timeToken;
         this.station = movedChessman.getPosition();
     }
+
+    public abstract int takenMaterial();
 
     public Chessman getMovedChessman(){return movedChessman;}
     public Square getTarget(){return target;}
@@ -42,9 +44,6 @@ public class Move {
         wasPlayed = false;
     }
 
-    @Override public String toString(){
-        return "(" +  movedChessman.getShortName() + ") " + station + " " + target;
-    }
 
     public int getTimeToken(){
         return timeToken;

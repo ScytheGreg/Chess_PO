@@ -5,9 +5,13 @@ import chessman.Chessman;
 
 public class CaptureMove extends Move{
     private final Chessman takenChessman;
-    public CaptureMove(Chessman movedChessman, Square target, int timeToken, Chessman takenChessman){
+    public CaptureMove(Chessman movedChessman, Square target, int timeToken){
         super(movedChessman, target, timeToken);
-        this.takenChessman = takenChessman;
+        this.takenChessman = target.getChessman();
+    }
+
+    public int takenMaterial(){
+        return takenChessman.getValue();
     }
 
     @Override

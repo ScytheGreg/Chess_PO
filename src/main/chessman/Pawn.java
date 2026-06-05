@@ -1,9 +1,11 @@
 package chessman;
 
+import move.CaptureMove;
 import move.Move;
 import board.Board;
 import board.Square;
 import board.Vector;
+import move.NoCaptureMove;
 import player.Player;
 
 import java.util.LinkedList;
@@ -34,7 +36,7 @@ public class Pawn extends Chessman{
             if (board.contains(targetCoords)) {
                 Square target = board.getSquare(targetCoords);
                 if (target.isFree()) {
-                    result.addLast(new Move(this, target, timeId));
+                    result.addLast(new NoCaptureMove(this, target, timeId));
                 }
             }
         }
@@ -47,7 +49,7 @@ public class Pawn extends Chessman{
                 Square target = board.getSquare(targetCoords);
                 Player targetOwner = target.getOwner();
                 if (targetOwner != null && ! targetOwner.equals(getOwner())){
-                    result.addLast(new Move(this, target, timeId));
+                    result.addLast(new CaptureMove(this, target, timeId));
                 }
             }
         }

@@ -18,6 +18,7 @@ public abstract class Player implements Comparable<Player> {
         this.upperCase = upperCase;
     }
 
+    /// !!!!!!!!! ///
     public abstract Move chooseMove(Iterator<Move> possibleMoves);
 
     public void play(Board board) throws NoPossibleMoveException{
