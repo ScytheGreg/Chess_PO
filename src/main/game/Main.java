@@ -21,16 +21,34 @@ public class Main {
             System.exit(1);
         }
 
-        Player white = new RandomUniformlyPlayer("Alice", true, seed);
+
+        // White have definitive advantage ???
+        Player white = new CalculatingRandomPlayer("Alice", true, seed);
         Player black = new GreedyRandomPlayer("Bob", false, seed);
 
-        white.attach(WriteMove.instance());
-        black.attach(WriteMove.instance());
+//        white.attach(WriteMove.instance());
+//        black.attach(WriteMove.instance());
+//
+//        white.attach(BoardPrinter.instance());
+//        black.attach(BoardPrinter.instance());
 
-        white.attach(BoardPrinter.instance());
-        black.attach(BoardPrinter.instance());
 
-        Game social = new Game(white, black, 1000);
-        social.play();
+        int aliceCnt = 0;
+        int bobCnt = 0;
+
+        for (int i = 0 ; i < 300 ; ++i) {
+            if (i % 30 == 0) {
+                System.out.println("Playing game nr " + i);
+            }
+            Game social = new Game(white, black, 1000);
+            social.play();
+            if (social.getWinner().equals(white)){
+                ++aliceCnt;
+            }
+            else{
+                ++bobCnt;
+            }
+        }
+        System.out.println("Alice wins: " + aliceCnt + "\nBob wins: " + bobCnt);
     }
 }

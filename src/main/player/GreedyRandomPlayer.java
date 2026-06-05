@@ -1,5 +1,6 @@
 package player;
 
+import board.Board;
 import move.Move;
 
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ public class GreedyRandomPlayer extends AbstractRandomPlayer{
         super(name, upperCase, seed);
     }
 
-    public Move chooseMove(LinkedList<Move> possibleMoves){
+    public Move chooseMove(LinkedList<Move> possibleMoves, Board board){
         int bestProfit = 0;
         LinkedList<Move> candidates = new LinkedList<>();
         for (Move candidate : possibleMoves){

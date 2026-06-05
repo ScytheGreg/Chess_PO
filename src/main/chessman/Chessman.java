@@ -67,6 +67,7 @@ public abstract class Chessman {
 
     public void beTaken(){
         owner.looseFigure(this);
+        position.leave();
         position = null;
     }
     public void attack(Square target){

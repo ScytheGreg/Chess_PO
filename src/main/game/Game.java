@@ -14,6 +14,7 @@ public class Game {
     private final int moveLimit;
     private boolean stalemate = false;
 
+
     public Game(Player white, Player black, int moveLimit){
         board = Board.instance();
         board.prepareGame(new ChessmanSet(white, black));
@@ -45,7 +46,6 @@ public class Game {
                 break;
             }
         }
-        System.out.println(this);
     }
 
     public LinkedList<Player> winnerList(){
@@ -75,5 +75,12 @@ public class Game {
 
         return "Chess game: (w) " + players[0] + " vs (b) "
                 + players[1] + endRemark;
+    }
+
+    public Player getWinner(){
+        if (!doesEnd()){
+            throw new IllegalStateException("Game has not end");
+        }
+        return winnerList().get(0);
     }
 }

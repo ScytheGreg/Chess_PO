@@ -8,8 +8,9 @@ import player.Player;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-public class Board {
+public class Board implements Iterable<Square>{
     private final int MAX_X = 8;
     private final int MAX_Y = 8;
     private int timeId = 0;
@@ -33,7 +34,17 @@ public class Board {
         }
     }
 
+    public Iterator<Square> iterator(){
+        return new BoardIterator(board);
+    }
+
     public void prepareGame(ChessmanSet startPosition){
+        timeId = 0;
+        for (Square field : this){ // Take every chessman from board
+            if (!field.isFree()){
+                field.getChessman().beTaken();
+            }
+        }
         for(Chessman figure : startPosition){
             if (figure != null){
                 Square boardSquare = getSquare(figure.getStartPosition());
@@ -72,6 +83,17 @@ public class Board {
             }
         }
         return result.iterator();
+    }
+
+    public Player getOpponent(Player player){
+        for (Square field : this){
+            if (!field.isFree()){
+                if (!field.getOwner().equals(player)){
+                    return field.getOwner();
+                }
+            }
+        }
+        throw new NoSuchElementException("There's no opponent's figures");
     }
 
     public void movePerformed(){

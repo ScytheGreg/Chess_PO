@@ -1,5 +1,7 @@
 package player;
 
+import board.Board;
+import move.BoardPrinter;
 import move.Move;
 import java.util.LinkedList;
 
@@ -9,7 +11,7 @@ public class RandomUniformlyPlayer extends AbstractRandomPlayer {
     }
 
     @Override
-    public Move chooseMove (LinkedList<Move> possibleMoves){
+    public Move chooseMove (LinkedList<Move> possibleMoves, Board board){
         return uniformDecision(possibleMoves);
     }
 }

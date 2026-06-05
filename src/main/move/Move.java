@@ -10,6 +10,7 @@ public abstract class Move {
     private final Square target;
     private final int timeToken;
     private boolean wasPlayed = false;
+    private boolean instanceWin = false;
 
     public Move(Chessman movedChessman, Square target, int timeToken){
         this.movedChessman = movedChessman;
@@ -51,4 +52,6 @@ public abstract class Move {
 
     public Square getStation(){return station;}
 
+    public boolean getInstanceWin(){return instanceWin;}
+    public void setAsInstanceWin() {instanceWin = true;}
 }

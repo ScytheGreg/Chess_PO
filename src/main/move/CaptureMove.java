@@ -14,6 +14,9 @@ public class CaptureMove extends Move{
         if (movedChessman.getOwner().equals(target.getOwner())){
             throw new InvalidMoveException("Attacking own figures is prohibited");
         }
+        if (target.getChessman().getValue() >= 1000) { // Equivalence of king
+            setAsInstanceWin();
+        }
     }
 
     public int takenMaterial(){
