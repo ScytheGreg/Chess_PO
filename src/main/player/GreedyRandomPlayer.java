@@ -11,6 +11,18 @@ public class GreedyRandomPlayer extends AbstractRandomPlayer{
     }
 
     public Move chooseMove(LinkedList<Move> possibleMoves){
-        return possibleMoves.get(0);
+        int bestProfit = 0;
+        LinkedList<Move> candidates = new LinkedList<>();
+        for (Move candidate : possibleMoves){
+            if (candidate.takenMaterial() > bestProfit){
+                candidates.clear(); // Previous candidates are weaker
+                bestProfit = candidate.takenMaterial(); // Update best profit from Move
+                candidates.push(candidate);
+            }
+            else if (candidate.takenMaterial() == bestProfit){
+                candidates.push(candidate);
+            }
+        }
+        return uniformDecision(candidates);
     }
 }

@@ -1,7 +1,9 @@
 package player;
 
+import move.Move;
 import randomness.UniqueGenerator;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public abstract class  AbstractRandomPlayer extends Player {
@@ -11,7 +13,10 @@ public abstract class  AbstractRandomPlayer extends Player {
         gen = UniqueGenerator.getGen(seed);
     }
 
-    public Random getGen(){
-        return gen;
+
+    public Move uniformDecision(LinkedList<Move> possibleMoves){
+        int n = possibleMoves.size();
+        int k = Math.abs(gen.nextInt() % n);
+        return possibleMoves.get(k);
     }
 }

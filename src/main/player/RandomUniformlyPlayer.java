@@ -10,8 +10,6 @@ public class RandomUniformlyPlayer extends AbstractRandomPlayer {
 
     @Override
     public Move chooseMove (LinkedList<Move> possibleMoves){
-        int n = possibleMoves.size();
-        int k = Math.abs(getGen().nextInt() % n);
-        return possibleMoves.get(k);
+        return uniformDecision(possibleMoves);
     }
 }
